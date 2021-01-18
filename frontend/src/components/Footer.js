@@ -1,7 +1,7 @@
 const Footer = ()=>{
     return (
         <footer>
-            <h2>Contact</h2>
+            <h2>Copyright © 2021 Mytinerary</h2>
         </footer>
     )
 }

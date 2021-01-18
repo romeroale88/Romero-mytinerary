@@ -52,6 +52,7 @@ const Carrousel = (props) => {
         onExiting={() => setAnimating(true)}
         onExited={() => setAnimating(false)}
         key={item[index].titulo}
+        
       >
         <Images images={item}/>  
       </CarouselItem>

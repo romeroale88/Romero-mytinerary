@@ -1,18 +1,14 @@
-const Image = ({imagen, titulo})=>{  
-    const clic = () =>{
-        alert(`Hiciste clic en ${titulo}`)
-    }
+const Image = ({imagen, titulo,id})=>{  
     return(
         <>
-            <div onClick={clic} className="imagen" style={{
+            <div className="imagen" style={{
                             backgroundImage: `url("${imagen}")`,
                             width:' 35vw',
                             height: '35vh',
                             backgroundSize:'cover',
                                                 }}>
-                        <h3>{titulo}</h3>
+                <h3>{titulo}</h3>                 
             </div>
-
         </>
     )
 }

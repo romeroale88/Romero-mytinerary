@@ -1,5 +1,4 @@
 import Carrousel from './Carrousel'
-import {Link} from 'react-router-dom'
 import Call from './Call'
 
 
@@ -15,10 +14,10 @@ const Main = () =>{
             }}>
                 <div className="callAction">
                         <Call />
-                    <div style={{
+                    <div className="logo" style={{
                         backgroundImage:'url("./assets/fuente.png")',
-                        width:'25vw',
-                        height:'25vh',
+                        width:'35vw',
+                        height:'35vh',
                         backgroundSize:'cover',
                     }}></div>
                 </div>
@@ -27,7 +26,6 @@ const Main = () =>{
                 <p className="popular">Popular Mytineraries</p>
                 <Carrousel />
             </div>
-
         </section>
     )
 }
