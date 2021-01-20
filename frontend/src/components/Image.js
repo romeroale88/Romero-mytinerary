@@ -1,4 +1,4 @@
-const Image = ({imagen, titulo,id})=>{  
+const Image = ({imagen, titulo})=>{  
     return(
         <>
             <div className="imagen" style={{

@@ -3,7 +3,7 @@ import {
   Carousel,
   CarouselItem,
   CarouselControl,
-  CarouselIndicators,
+  // CarouselIndicators,
 } from 'reactstrap';
 import Images from './Images'
 
@@ -41,12 +41,12 @@ const Carrousel = (props) => {
     setActiveIndex(nextIndex);
   }
 
-  const goToIndex = (newIndex) => {
-    if (animating) return;
-    setActiveIndex(newIndex);
-  }
+  // const goToIndex = (newIndex) => {
+  //   if (animating) return;
+  //   setActiveIndex(newIndex);
+  // }
 
-  const slides = items.map((item,index) => {
+  const slides = items.map((item,index) => { 
     return (
       <CarouselItem
         onExiting={() => setAnimating(true)}
@@ -66,7 +66,7 @@ const Carrousel = (props) => {
       previous={previous}
       
     >
-      <CarouselIndicators items={items} activeIndex={activeIndex} onClickHandler={goToIndex} />
+      {/* <CarouselIndicators items={items} activeIndex={activeIndex} onClickHandler={goToIndex} /> */}
       {slides}
       <CarouselControl direction="prev" directionText="Previous" onClickHandler={previous} />
       <CarouselControl direction="next" directionText="Next" onClickHandler={next} />

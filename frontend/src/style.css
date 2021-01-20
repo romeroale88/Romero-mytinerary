@@ -67,17 +67,21 @@ nav .active{
     margin: 10vh 0 0 15vw;
     width: 30vw;
     height: 50vh;
-    background-color: rgba(255, 255, 255, 0.452);
     color: black;
-    box-shadow: 0 5px 5px rgba(0,0,0,0.6);
+    background: rgba(255, 248, 248, 0.349);
+    box-shadow: 0 8px 10px 0 rgba(6, 7, 22, 0.568);
+    backdrop-filter: blur( 5.0px );
+    -webkit-backdrop-filter: blur( 5.0px );
     border-radius: 10px;
+
 }
 .call p{
     text-align: center;
     width: 25vw;
     padding-top: 10vh;
     font-size: 30px;
-    color: black;
+    color:#1c4573;
+    font-weight: 600;
 }
 .btnCall{
     background-color:#1c4573 ;
@@ -189,4 +193,34 @@ h3 {
         font-size: 20px;
         color: black;
     }
+}
+.containerCities{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.imagenCity{
+    margin: 2vh 5vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    transition: all 0.3s;
+}
+.imagenCity:hover{
+    transform: translateY(-10px);
+    box-shadow: 0 12px 16px rgba(0, 0, 0, 0.555);
+    transition: all 0.3s;
+}
+.containerCity{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    color: #1c4573;
+    justify-content: center;
+}
+.city {
+    display: flex;
+    align-items: center;
+
 }

@@ -1,0 +1,39 @@
+const data = [
+    {imagen:'./assets/Berlin.png', titulo:'Berlin',_id:1},
+    {imagen:'./assets/México.jpg', titulo:'México',_id:2},
+    {imagen:'./assets/New York.jpg', titulo:'New York',_id:3},
+    {imagen:'./assets/Hawaii.jpg', titulo:'Hawaii',_id:4},
+    {imagen:'./assets/Paris.jpg', titulo:'Paris',_id:5},
+    {imagen:'./assets/Rome.jpg', titulo:'Rome',_id:6},
+    {imagen:'./assets/Rio de Janeiro.jpg', titulo:'Rio de Janeiro',_id:7},
+    {imagen:'./assets/Bora Bora.jpg', titulo:'Bora Bora',_id:8},
+    {imagen:'./assets/Istanbul.jpg', titulo:'Bruges',_id:9},
+    {imagen:'./assets/Egypt.jpg', titulo:'Guiza',_id:10},
+    {imagen:'./assets/Venice.jpg', titulo:'Venice',_id:11},
+    {imagen:'./assets/San Carlos de Bariloche.jpg', titulo:'San Carlos de Bariloche',_id:12}   
+]
+
+const cityController = {
+allCities: (req, res) => {
+    // Devolver al frontend la lista de ciudades
+
+    // PEDIRLE A LA BASE DE DATOS TODAS LAS CIUDADES, ESA INFORMACION LA VA A GUARDAR EN UN
+    // VARIABLE LLAMADA DATA
+    res.json({
+        respuesta: data
+    })
+},
+oneCity: (req, res) => {
+    // Devolver al frontend sola la ciudad que me piden (por ID)
+    const id = parseInt(req.params.id)
+    data.map(city => {
+        if (city._id === id) {
+            res.json({
+                respuesta: city
+            })
+        }
+    })
+}
+}
+
+module.exports = cityController
