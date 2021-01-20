@@ -1,4 +1,4 @@
-import Header from './Header'
+
 import React, {useEffect, useState} from 'react'
 import {Link} from 'react-router-dom'
 const Cities = () =>{
@@ -11,15 +11,16 @@ const Cities = () =>{
     },[])
 
     return(
-        <>  
-                <h2>Cities</h2>
-                <div className="containerCities" style={{
+        <div className="buscador">
+            <h2>Cities</h2>
+            <input type="text" placeholder="Search city"/>
+            <div className="containerCities" style={{
                     minHeight:'85vh',
                     marginTop:'10vh',
                     width:'100%',
                 }}>
                     {
-                        cities.map(({imagen,titulo,_id})=>{                            
+                        cities.map(({imagen,titulo,_id})=>{                          
                             return (
                                 <>
                                 <div>
@@ -29,7 +30,7 @@ const Cities = () =>{
                                         height: '50vh',
                                         backgroundSize:'cover'
                                     }}>
-                                        <h3>{titulo}</h3>
+                                        <h3 key={_id}>{titulo}</h3>
                                     </div></Link>
                                 </div>
                                 </>
@@ -37,7 +38,8 @@ const Cities = () =>{
                         })
                     }
                 </div>
-        </>
+        </div>
+        
     )
 }
 export default Cities
