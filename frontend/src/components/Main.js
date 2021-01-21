@@ -10,7 +10,6 @@ const Main = () =>{
                 minHeight:'85vh',
                 width:'100%',
                 backgroundSize:'cover'
-
             }}>
                 <div className="callAction">
                         <Call />

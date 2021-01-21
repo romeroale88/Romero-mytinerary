@@ -4,6 +4,7 @@ const cityController = require('../controllers/cityController')
 
 router.route('/cities')
 .get(cityController.allCities)
+.post(cityController.addCity)
 
 router.route('/city/:id')
 .get(cityController.oneCity)

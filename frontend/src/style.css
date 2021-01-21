@@ -9,6 +9,7 @@ body {
 }
 #root{
     display: flex;
+    background-color: #ece6f5;
     min-height: 100vh;
     flex-direction: column;
     justify-content: space-between;
@@ -83,7 +84,7 @@ nav .active{
     color:#1c4573;
     font-weight: 600;
 }
-.btnCall{
+.buttonCall{
     background-color:#1c4573 ;
     padding: 10px 20px;
     margin-bottom: 5vh;
@@ -91,7 +92,7 @@ nav .active{
     color: white;
     transition: all 0.2s;
 }
-.btnCall:hover{
+.buttonCall:hover{
     transform: translateY(-7px);
     box-shadow: 0 6px 10px rgba(0, 0, 0, 0.555);
     transition: all 0.3s;
@@ -243,7 +244,8 @@ input{
     font-size: 30px;
     border: none;
     outline: none;
-    border-bottom: 2px solid #1c4573;
+    background-color: #ece6f5;
+    border-bottom: 4px solid #1c4573;
 }
 .itenerarie{
     display: flex;
@@ -264,4 +266,9 @@ h4{
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+.buttons{
+    display: flex;
+    width: 50%;
+    justify-content: space-between;
 }
