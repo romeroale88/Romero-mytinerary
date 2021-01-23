@@ -1,15 +1,22 @@
 import React, {useEffect, useState} from 'react'
 import {Link} from 'react-router-dom'
+import Loading from './Loading'
 
 const Itineraries = (props) =>{
     const [city, setCity] = useState({})
+    const [loading, setLoading] = useState(true)
     // se fetchea cada una de las ciudades por id
     useEffect(()=> {
         const id=(props.match.params.id)
         fetch(`http://localhost:4000/api/city/${id}`)
         .then(respuesta=>respuesta.json())
-        .then(data => setCity(data.respuesta))
+        .then(data => {setCity(data.respuesta)
+                        setLoading(false)})
     },[])
+    
+    if(loading){
+        return <Loading />
+    }
  
     return (
         <div className="containerCity" >

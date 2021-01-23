@@ -174,6 +174,7 @@ footer {
 }
 /* ################################## Pag Cities ################################################################# */
 .containerCities{
+    margin-top: 10vh;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -279,4 +280,74 @@ h4{
     h2{
         font-size: 40px;
     }
+    .buttonCall{
+        background-color:#1c4573 ;
+        font-size: 15px;
+        padding: 8px 8px;
+        margin:0 10px;
+        border-radius: 5px;
+        color: white;
+        transition: all 0.2s;
+    }
+}
+/* ################################## Loading ################################################################# */
+@keyframes ldio-uchbpzap1ik {
+  0% { transform: rotate(0) }
+  100% { transform: rotate(360deg) }
+}
+.ldio-uchbpzap1ik div { box-sizing: border-box!important }
+.ldio-uchbpzap1ik > div {
+  position: absolute;
+  width: 144px;
+  height: 144px;
+  top: 28px;
+  left: 28px;
+  border-radius: 50%;
+  border: 16px solid #000;
+  border-color: #1c4573 transparent #1c4573 transparent;
+  animation: ldio-uchbpzap1ik 1s linear infinite;
+}
+.ldio-uchbpzap1ik > div:nth-child(2) { border-color: transparent }
+.ldio-uchbpzap1ik > div:nth-child(2) div {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transform: rotate(45deg);
+}
+.ldio-uchbpzap1ik > div:nth-child(2) div:before, .ldio-uchbpzap1ik > div:nth-child(2) div:after { 
+  content: "";
+  display: block;
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  top: -16px;
+  left: 48px;
+  background: #1c4573;
+  border-radius: 50%;
+  box-shadow: 0 128px 0 0 #1c4573;
+}
+.ldio-uchbpzap1ik > div:nth-child(2) div:after { 
+  left: -16px;
+  top: 48px;
+  box-shadow: 128px 0 0 0 #1c4573;
+}
+.loadingio-spinner-dual-ring-780y9vea2ed {
+  width: 200px;
+  height: 200px;
+  display: inline-block;
+  overflow: hidden;
+  background: none;
+}
+.ldio-uchbpzap1ik {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform: translateZ(0) scale(1);
+  backface-visibility: hidden;
+  transform-origin: 0 0; /* see note above */
+}
+.ldio-uchbpzap1ik div { box-sizing: content-box; }
+.loading {
+    display: flex;
+    justify-content: center;
 }
