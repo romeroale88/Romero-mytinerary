@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 //Conexion a bse de datos
-mongoose.connect('mongodb+srv://romeroAle:mongoromero@cluster0.tgjoq.mongodb.net/mytinerary?retryWrites=true&w=majority',{
+mongoose.connect(process.env.MONGODB,{
     useNewUrlParser: true,
     useCreateIndex: true,
     useUnifiedTopology: true,

@@ -1,17 +1,23 @@
-import Carrousel from './Carrousel'
-import Call from './Call'
-
+import Carrousel from '../components/Carrousel'
+import Call from '../components/Call'
+import {useEffect} from 'react'
 
 const Main = () =>{
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+      }, []);    
+
     return (
         <section>
-            <div className="home" style={{
+            <div style={{
                 backgroundImage:'url("./assets/fondo.jpg")',
                 minHeight:'85vh',
                 width:'100%',
                 backgroundSize:'cover'
             }}>
                 <div className="callAction">
+                    {/* Se llama al call to action  */}
                         <Call />
                     <div className="logo" style={{
                         backgroundImage:'url("./assets/fuente.png")',
@@ -23,6 +29,7 @@ const Main = () =>{
             </div>
             <div className="containerCarrousel">
                 <p className="popular">Popular Mytineraries</p>
+                {/* Se llama al componente carrousel */}
                 <Carrousel />
             </div>
         </section>
