@@ -1,4 +1,5 @@
 const City = require('../models/City')
+const Itinerary = require('../models/Itinerary')
 
 const cityController = {
     addCity: (req, res) => {
@@ -36,6 +37,14 @@ const cityController = {
         .catch(error => {
             return res.json({success: false, error: error})
         })
+    },
+    cityItineraries: async (req, res) =>{
+        const {id} = req.params
+        const itineraries = await Itinerary.find({idCity:id})
+        City.find({_id: id})
+        .then (()=> res.json({success: true, itineraries}))
+        .catch(error => res.json({success: false, error}))
+        
     }
 }
 
