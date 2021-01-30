@@ -4,7 +4,7 @@ import Main from './pages/Main'
 import Footer from './components/Footer'
 import Cities from './pages/Cities'
 import {BrowserRouter, Route, Switch} from 'react-router-dom'
-import Itineraries from './components/Itineraries'
+import City from './components/City'
 
 function App(){
   return (
@@ -14,7 +14,7 @@ function App(){
         <Switch>
           <Route exact path='/' component={Main} />
           <Route path='/cities' component={Cities} />
-          <Route path ="/city/:id" component={Itineraries}/>
+          <Route path ="/city/:id" component={City}/>
           </Switch>
       </BrowserRouter>
       <Footer />

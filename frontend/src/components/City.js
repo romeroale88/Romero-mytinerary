@@ -1,17 +1,63 @@
+import React, {useEffect, useState} from 'react'
 import {Link} from 'react-router-dom'
+import Loading from './Loading'
+import {connect} from 'react-redux'
+import Itinerary from './Itinerary'
+import itinerariesActions from '../redux/actions/itinerariesActions'
 
-const City = ({cityPic,cityName,_id}) =>{
-    return(
-        <Link to={`/city/${_id}`}>
-            <div  className="imagenCity" style={{
-            backgroundImage:`url('${cityPic}')`,
-            width:'60vw',
-            height:'50vh',
-            backgroundSize:'cover'
-        }}>
-            <h3>{cityName}</h3>
+
+const City = (props) =>{
+    const [city, setCity] = useState({})
+    const [loading, setLoading] = useState(true)
+    // se fetchea cada una de las ciudades por id
+    useEffect(()=> {
+        const id=(props.match.params.id)
+        const city = props.cities.filter(city => city._id ===id)
+        setCity(city[0])
+        props.listItineraries(id)  
+    },[])
+
+    return (
+        
+        <div className="containerCity" >
+            <div className="city" style={{
+                backgroundImage:`url(".${city.cityPic}")`,
+                width:'100%',
+                height:'75vh',
+                backgroundSize:'cover',
+                backgroundPosition:'top'
+            }}>
+                <h3>{city.cityName}</h3>
             </div>
-        </Link>
+            <div className="itineraries">
+                {props.itineraries.length !==0 ?
+                props.itineraries.map(itinerary =>{
+                    return <Itinerary itinerary={itinerary}/>
+                }):
+                <div className="noFound">
+                    <h4>We don't have itineraries yet!</h4>
+                </div>
+                }
+                <div className="buttons">
+                    <Link to="/cities">
+                        <h6 className="buttonCall">Back to Cities</h6>
+                    </Link>
+                    <Link to="/">
+                        <h6 className="buttonCall">Back to Home</h6>
+                    </Link>
+                </div>
+            </div>
+        </div>
     )
 }
-export default City
+const mapStateToProps = state=>{
+    return {
+        cities: state.cityR.cities,
+        itineraries: state.itineraryR.itineraries
+    }
+}
+const mapDispatchToProps = {
+    listItineraries: itinerariesActions.getItinerary
+
+}
+export default connect(mapStateToProps,mapDispatchToProps)(City)

@@ -1,8 +1,10 @@
+
 import React, {useEffect, useState} from 'react'
 import City from '../components/City'
 import Loading from '../components/Loading'
 import { connect} from 'react-redux'
 import citiesActions from '../redux/actions/citiesActions'
+import {Link} from 'react-router-dom'
 
 const Cities = (props) =>{
     
@@ -24,7 +26,16 @@ const Cities = (props) =>{
                 {props.searchCities.length !==0  ?
                 props.searchCities.map(({cityPic,cityName,_id})=>{                  
                     return (
-                        <City key={cityName} cityPic={cityPic} cityName={cityName} _id={_id} />
+                        <Link key={_id} to={`/city/${_id}`}>
+                            <div className="imagenCity" style={{
+                            backgroundImage:`url('${cityPic}')`,
+                            width:'60vw',
+                            height:'50vh',
+                            backgroundSize:'cover'
+                        }}>
+                            <h3 >{cityName}</h3>
+                            </div>
+                        </Link>
                         )
                     })
                     :
