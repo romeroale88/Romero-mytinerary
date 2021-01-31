@@ -40,7 +40,7 @@ const cityController = {
     },
     cityItineraries: async (req, res) =>{
         const {id} = req.params
-        const itineraries = await Itinerary.find({idCity:id})
+        const itineraries = await Itinerary.find({idCity:id}).populate('idCity')
         City.find({_id: id})
         .then (()=> res.json({success: true, itineraries}))
         .catch(error => res.json({success: false, error}))

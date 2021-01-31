@@ -11,28 +11,24 @@ const City = (props) =>{
     const [loading, setLoading] = useState(true)
     // se fetchea cada una de las ciudades por id
     useEffect(()=> {
+        window.scrollTo(0, 0)
         const id=(props.match.params.id)
         const city = props.cities.filter(city => city._id ===id)
         setCity(city[0])
         props.listItineraries(id)  
     },[])
-
     return (
         
         <div className="containerCity" >
             <div className="city" style={{
-                backgroundImage:`url(".${city.cityPic}")`,
-                width:'100%',
-                height:'75vh',
-                backgroundSize:'cover',
-                backgroundPosition:'top'
+                backgroundImage:`url(".${city.cityPic}")`
             }}>
                 <h3>{city.cityName}</h3>
             </div>
             <div className="itineraries">
                 {props.itineraries.length !==0 ?
                 props.itineraries.map(itinerary =>{
-                    return <Itinerary itinerary={itinerary}/>
+                    return <Itinerary key={itinerary._id} itinerary={itinerary}/>
                 }):
                 <div className="noFound">
                     <h4>We don't have itineraries yet!</h4>

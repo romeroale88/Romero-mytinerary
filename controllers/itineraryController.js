@@ -35,6 +35,13 @@ const itineraryController = {
         .catch(error => {
             return res.json({success: false, error: error})
         })
+    },
+    modifItinerary:(req, res) =>{
+        const id = req.params.id
+        const {idCity,itineraryTitle,userPic,userName,likes,hours,price,hastags,activities,comments} = req.body
+        Itinerary.findOneAndUpdate({_id:id}, {idCity,itineraryTitle,userPic,userName,likes,hours,price,hastags,activities,comments},{new: true})
+        .then(itineraryModif => res.json({success:true, respuesta: itineraryModif}))
+        .catch(error => res.json({success: true, error: error}))
     }
 }
 

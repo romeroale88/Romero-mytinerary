@@ -14,7 +14,14 @@ router.route('/itineraries')
 .post(itineraryController.addItinerary)
 .get(itineraryController.allItineraries)
 
-router.route('/itinerary/:id')
+router.route('/itineraries/:id')
 .get(cityController.cityItineraries)
+
+router.route('/itinerary/:id')
+.get(itineraryController.oneItinerary)
+.put(itineraryController.modifItinerary)
+
+
+
 
 module.exports = router
