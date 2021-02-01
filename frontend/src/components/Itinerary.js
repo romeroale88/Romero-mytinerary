@@ -1,6 +1,5 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import Comment from './Comment'
-
 
 const Itinerary = ({itinerary}) =>{
     const [visible, setVisible] = useState(false)
@@ -29,8 +28,8 @@ const Itinerary = ({itinerary}) =>{
                         })}</div>
                     </div>
                     <div className="hastags">
-                        {itinerary.hastags.map(hastag => {
-                            return(<h6>{hastag}</h6>)
+                        {itinerary.hastags.map((hastag,i) => {
+                            return(<h6 key={i}>{hastag}</h6>)
                         })}
                     </div>
                 </div>
@@ -43,7 +42,7 @@ const Itinerary = ({itinerary}) =>{
                     {itinerary.activities.length !==0 ?
                     (itinerary.activities.map(activity=>{
                         return (
-                            <div>
+                            <div key={activity._id}>
                                 <div className="containerActivity">
                                     <h4>{activity.activityTitle}</h4>                                
                                     <div className="activity" style={{backgroundImage:`url(.${activity.activityImage})`}}></div>
@@ -60,7 +59,7 @@ const Itinerary = ({itinerary}) =>{
                     <div className="containerComment">
                         {itinerary.comments.length !==0 ?
                         (itinerary.comments.map(comment=>{
-                            return <Comment comment={comment}/>
+                            return <Comment key={comment._id} comment={comment}/>
                         }))                    
                             :
                         <h4>No comments</h4>}

@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react'
 import {Link} from 'react-router-dom'
-import Loading from './Loading'
 import {connect} from 'react-redux'
 import Itinerary from './Itinerary'
 import itinerariesActions from '../redux/actions/itinerariesActions'
@@ -8,7 +7,6 @@ import itinerariesActions from '../redux/actions/itinerariesActions'
 
 const City = (props) =>{
     const [city, setCity] = useState({})
-    const [loading, setLoading] = useState(true)
     // se fetchea cada una de las ciudades por id
     useEffect(()=> {
         window.scrollTo(0, 0)

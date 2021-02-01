@@ -1,22 +1,16 @@
 
-import React, {useEffect, useState} from 'react'
-import City from '../components/City'
-import Loading from '../components/Loading'
+import React, {useEffect} from 'react'
 import { connect} from 'react-redux'
 import citiesActions from '../redux/actions/citiesActions'
 import {Link} from 'react-router-dom'
 
 const Cities = (props) =>{
     
-    const [loading, setLoading] = useState(true)
     // Se fetchea las ciudades
     useEffect(()=> {
         window.scrollTo(0, 0);
         props.addCities()   
     },[])
-    // if(loading){
-    //     return <Loading />
-    // }
 
     return(
         <div className="buscador">
