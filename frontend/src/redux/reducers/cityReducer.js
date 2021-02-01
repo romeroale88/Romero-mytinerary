@@ -1,5 +1,6 @@
 const initialState = {
     cities: [],
+    city:{},
     searchCities:[],
     loading: true
 }
@@ -17,7 +18,12 @@ export function cityReducer (state = initialState,action){
                 ...state,
                    // Buscador aplicando indexOf utilzando indice 0 para encontrar incidencia en primera posicion 
                 searchCities: state.cities.filter(city => city.cityName.toUpperCase().indexOf(action.payload.toUpperCase().trim())===0)
-            }    
+            }
+        case 'CARGAR_CITY':
+            return{
+                ...state,
+                city: action.payload
+            }  
         default: 
             return state
 

@@ -5,7 +5,7 @@ const Comment = ({comment}) =>{
                 <div className="userComment">
                     <div className="commentPic" style={{backgroundImage:`url(${comment.userPic})`}}>
                     </div>
-                    <h6>{comment.userName}</h6> 
+                    <h5>{comment.userName}</h5> 
                 </div>
                 <p>{comment.comment}</p>
             </div>                        

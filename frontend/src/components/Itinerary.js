@@ -63,11 +63,12 @@ const Itinerary = ({itinerary}) =>{
                         }))                    
                             :
                         <h4>No comments</h4>}
+                        <input className="comentario" disabled type="text" placeholder="You must be logged to comment!"/>
                     </div>
                 </div>
                 </>
             )}
-            <button onClick={()=> setVisible(!visible)}className="buttonCall">{visible ? 'View less' : 'View more'}</button>
+            <button onClick={()=> setVisible(!visible)}className="buttonActivities">{visible ? 'View less' : 'View more'}</button>
         </div>
     )
 

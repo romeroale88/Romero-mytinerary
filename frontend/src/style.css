@@ -92,7 +92,7 @@ nav .active{
     text-align: center;
     width: 25vw;
     padding-top: 10vh;
-    font-size: 30px;
+    font-size: 25px;
     color:#1c4573;
     font-weight: 600;
 }
@@ -218,7 +218,7 @@ h2{
     flex-direction: column;
     align-items: center;
 }
-input{
+.buscador input{
     width: 60vw;
     font-size: 30px;
     border: none;
@@ -228,7 +228,7 @@ input{
     border-bottom: 4px solid #1c4573;
 }
 .noFound{
-    background-color: #ffff;
+    background-color: #1c4573;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -239,7 +239,7 @@ input{
     border: 2px solid #1c4573;
     border-radius: 10px;
     box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.336);
-    color: #1c4573;
+    color: #ffff;
 }
 h4{
     font-weight: 600;
@@ -266,18 +266,18 @@ h5{
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    width: 80vw;
+    min-width: 50vw;
     margin: 5vh auto;
     min-height: 35vh;
-    background-color: #ffffff;
+    background-color: #1c4573;
     border-radius: 10px;
     box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.336);
-    color: #1c4573;
+    color: #fff;
  
 }
 .containerItinerary{
     display: flex;
-    width: 90%;
+    width: 50vw;
     align-items: center;
     height: 90%;
     margin:3vw 0;
@@ -290,7 +290,7 @@ div.userItinerary{
 }
 .infoItinerary{
     display: flex;
-    width: 90%;
+    width: 100%;
     height: 90%;
     flex-direction: column;
     align-items: center;
@@ -304,13 +304,14 @@ div.userItinerary{
     margin-top: 2vh;
     display: flex;
     align-items: center;
-    width: 70%;
+    width: 100%;
     justify-content: space-evenly;
     
 }
 .userPic{
     width: 100px;
     height: 100px;
+    border-radius: 50%;
     background-size: cover;
 }
 .hastags{
@@ -327,10 +328,18 @@ h6{
 .activities{
     display: flex;
     padding-bottom: 2vh;
-    margin: 5vh;
+    margin: 2vh;
+    padding: 2vw;
+    justify-content: center;
+    width: 65vw;
+    background-color: #ece6f5;
+    border-radius: 10px;
+    border: 2px solid #ece6f5;
+    box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.336);
 }
 .activities h4{
     font-size: 20px;
+    color: #1c4573;
 }
 .activity{
     width: 20vw;
@@ -339,12 +348,31 @@ h6{
     border-radius: 10px;
     background-size: cover;
 }
+.buttonActivities{
+    background-color:#ece6f5 ;
+    padding: 10px 20px;
+    margin: 5vh;
+    border-radius: 5px;
+    color: #1c4573;
+    transition: all 0.2s;
+    border: none;
+    outline: none;
+    font-weight: 600;
+}
+.buttonActivities:hover{
+    transform: translateY(-7px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.555);
+    transition: all 0.3s;
+}
+.buttonActivities:focus{
+    outline: none;
+}
 /* ################################## Comment ################################################################# */
 .containerComment{
     background-color: #ece6f5;
     border-radius: 10px;
-    min-width: 60vw;
-    padding: 2vh 0;
+    min-width: 65vw;
+    padding: 2vw 0;
     margin: 2vh 0;
     box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.336);
 }
@@ -355,12 +383,21 @@ h6{
 .comment{
     display: flex;
     align-items: center;
-    
+}
+.containerComment h4{
+    color: #1c4573;
+    font-size: 20px;
+}
+.comment h6,h5{
+    font-size: 20px;
+    color: #1c4573;
 }
 .comment p{
     background-color: #fff;
+    box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.336);
     padding: 1vw;
     border-radius: 10px;
+    color: #1c4573;
     
 }
 .commentPic{
@@ -376,9 +413,15 @@ h6{
     align-items: center;
     margin-right: 2vw;
     width: 15vw;
-    
 }
-
+.comentario{
+    width: 90%;
+    padding: 1vw;
+    border-radius: 10px;
+    border: none;
+    background-color: #fff;
+    box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.336)
+}
 
 /* ################################## Responsive ################################################################# */
 
@@ -439,10 +482,18 @@ h6{
     .activities h4{
         font-size: 15px;
     }
+    .comment h4{
+        font-size: 15px;
+    }
     .containerComment{
         width: 80vw;
     }
-   
+    .containerItinerary{
+        width: 80vw;
+    }
+    .activities{
+        width: 80vw;
+    }
 }
 /* ################################## Loading ################################################################# */
 @keyframes ldio-uchbpzap1ik {
