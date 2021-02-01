@@ -9,7 +9,8 @@ export function cityReducer (state = initialState,action){
             return {
                 ...state,
                 cities: action.payload,
-                searchCities: action.payload
+                searchCities: action.payload,
+                loading: false
             }
         case 'SEARCH':
             return {

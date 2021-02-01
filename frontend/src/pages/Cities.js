@@ -3,14 +3,18 @@ import React, {useEffect} from 'react'
 import { connect} from 'react-redux'
 import citiesActions from '../redux/actions/citiesActions'
 import {Link} from 'react-router-dom'
+import Loading from '../components/Loading'
 
 const Cities = (props) =>{
     
     // Se fetchea las ciudades
     useEffect(()=> {
         window.scrollTo(0, 0);
-        props.addCities()   
+        props.addCities()
     },[])
+    if(props.loading){
+        return <Loading />
+    }
 
     return(
         <div className="buscador">
@@ -44,7 +48,8 @@ const Cities = (props) =>{
 const mapStateToProps = state =>{
     return{
         listCitites: state.cityR.cities,
-        searchCities: state.cityR.searchCities
+        searchCities: state.cityR.searchCities,
+        loading: state.cityR.loading
     }
 }
 const mapDispatchToProps = {

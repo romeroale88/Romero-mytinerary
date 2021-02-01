@@ -15,6 +15,7 @@ const City = (props) =>{
         setCity(city[0])
         props.listItineraries(id)  
     },[])
+
     return (
         
         <div className="containerCity" >

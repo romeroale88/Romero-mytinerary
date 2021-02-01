@@ -1,10 +1,10 @@
 import { useState } from "react"
 import Comment from './Comment'
 
+
 const Itinerary = ({itinerary}) =>{
     const [visible, setVisible] = useState(false)
-    
-    
+
     return (
         <div className="itinerario">
             <div className="containerItinerary">
