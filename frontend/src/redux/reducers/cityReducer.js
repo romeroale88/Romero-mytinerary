@@ -23,7 +23,7 @@ export function cityReducer (state = initialState,action){
             return{
                 ...state,
                 city: action.payload
-            }  
+            }
         default: 
             return state
 

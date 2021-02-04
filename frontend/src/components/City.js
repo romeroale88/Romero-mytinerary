@@ -7,21 +7,24 @@ import citiesActions from '../redux/actions/citiesActions'
 
 
 const City = (props) =>{
-    // const [city, setCity] = useState({})
+    const [city, setCity] = useState({})
     useEffect(()=> {
         window.scrollTo(0, 0)
         const id=(props.match.params.id)
-        props.oneCity(id)
+        const city = props.cities.filter(city => city._id ===id)
+        setCity(city[0])
         props.listItineraries(id)
+        if(city.length===0){
+            return props.history.push('/cities')
+        }
     },[])
 
-    return (
-        
+    return (        
         <div className="containerCity" >
             <div className="city" style={{
-                backgroundImage:`url(".${props.city.cityPic}")`
+                backgroundImage:`url(".${city.cityPic}")`
             }}>
-                <h3>{props.city.cityName}</h3>
+                <h3>{city.cityName}</h3>
             </div>
             <div className="itineraries">
                 {props.itineraries.length !==0 ?

@@ -3,9 +3,7 @@ const citiesActions = {
         return async(dispatch, getState) =>{
             const respuesta = await fetch('http://localhost:4000/api/cities')
             const data = await respuesta.json()
-            dispatch({type: 'CARGAR_CITIES', payload: data.respuesta})
-            
-            
+            dispatch({type: 'CARGAR_CITIES', payload: data.respuesta})  
         }
     },
     search: (valor) =>{
@@ -14,13 +12,6 @@ const citiesActions = {
             
         }
     },
-    oneCity:(id) =>{
-        return async(dispatch, getState) =>{
-            const respuesta = await fetch(`http://localhost:4000/api/city/${id}`)
-            const data = await respuesta.json()
-            dispatch({type: 'CARGAR_CITY', payload: data.respuesta})
-        }
-    }
 }
 
 export default citiesActions
