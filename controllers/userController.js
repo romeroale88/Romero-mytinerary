@@ -5,17 +5,15 @@ const userController = {
     signUp: async (req, res) =>{
         var errores=[]
         const {nombre,apellido,email,userName,password,urlPic,pais} = req.body
-        if(nombre ==='' || apellido ==='' || userName === '' || password ==='' || urlPic === '' || pais==='' || email===''){
-            errores.push('Todos los campos son requeridos')
-        }
         const userExists = await User.findOne({userName: userName})
         if(userExists){
             errores.push('el usuario es incorrecto')
         }
         if(errores.length === 0){ 
             const passwordHash = bcryptjs.hashSync(password,10)
-            const newUser = new User ({
-                userName,password:passwordHash,nombre,apellido,email,pais
+            
+            var newUser = new User ({
+                userName,password:passwordHash,nombre,apellido,email,pais,urlPic
             })
             var newUserSaved = await newUser.save()            
         }

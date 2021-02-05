@@ -11,16 +11,21 @@ const User = (props) => {
 
   return (
     <>
-      <div className="user" style={{
-        backgroundImage:'url("./assets/user.png")',
-        width:'50px',
-        height:'50px',
-        backgroundSize:'cover'
+      {props.loggedUser ? <div className="userProfile" style={{backgroundImage:`url(${props.loggedUser.urlPic})`}}></div>
+      :
+      <div className="userProfile" style={{
+        backgroundImage:'url("./assets/user.png")'
     }}></div>
+      }
+      
       <div className="visibleSing">
         {visible && 
         <div style={{display:'flex', justifyContent:'space-between'}}>
-          {props.loggedUser ? <p onClick={()=> props.logoutUser()}>logout</p>
+          {props.loggedUser ? 
+          <>
+          <p onClick={()=> props.logoutUser()}>logout</p>
+          <p>{`Welcome, ${props.loggedUser.nombre}`}</p>
+          </>
           :<>
           <NavLink to='/signin'><p>Sign In</p></NavLink>
           <NavLink to='/signup'><p>Sing Up</p></NavLink>

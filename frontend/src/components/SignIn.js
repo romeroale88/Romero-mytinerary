@@ -2,9 +2,8 @@ import React, {useEffect,useState} from 'react'
 import {connect} from 'react-redux'
 import userActions from '../redux/actions/userActions'
 const SignIn = (props)=>{
-    console.log(props)
     const [loguear,setLoguear] = useState({
-        password:'',userName:''
+        userName:'', password:''
     })
     const [errores, setErrores] = useState([])
 
@@ -18,6 +17,7 @@ const SignIn = (props)=>{
     }
     const validarUsuario = async e =>{
         e.preventDefault()
+        console.log(loguear)
         if(loguear.userName==='' || loguear.password===''){
             alert('error')
             return false
@@ -25,21 +25,22 @@ const SignIn = (props)=>{
         setErrores([])
         const respuesta = await props.loginUser(loguear)
         if(respuesta && !respuesta.success){
-            setErrores(respuesta.errores)
-            console.log(respuesta.errores)
+            setErrores([respuesta.mensaje])
+            console.log(respuesta.mensaje)
         }
         else {
             alert('bienvenido')
+            props.history.push('/')
         }
     }
     return(
         <div className="SignUp">
-            <h4>Create Account</h4>
+            <h4>Sign In</h4>
             <div className="formulario">
                 <input type="text"autoComplete="nope"  name="userName" placeholder="Username" onChange={leerInput}/>
-                <input type="text" autoComplete="nope" name="password" placeholder="Password" onChange={leerInput}/>
+                <input type="password" autoComplete="nope" name="password" placeholder="Password" onChange={leerInput}/>
             </div>
-            <button onClick={validarUsuario}>Create</button>
+            <button onClick={validarUsuario}>Validar</button>
             <div>
                 {errores.map(error => <p>{error}</p>)}
             </div>
