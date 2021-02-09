@@ -24,6 +24,11 @@ const userActions = {
             dispatch({type: 'LOG_OUT_USER'})
         }
     },
+    logFromLs:(nombre, url,token) =>{
+        return (dispatch, getState) =>{
+            dispatch({type: 'LOG_USER', payload: {response:{userName: nombre, urlPic:url, token}}})
+        }
+    },
     loginUser: (user)=>{
         return async (dispatch, getState) =>{
             const respuesta = await axios.post('http://localhost:4000/api/user/signin',user)

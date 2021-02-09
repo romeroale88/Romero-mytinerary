@@ -1,6 +1,10 @@
 import React, {useEffect,useState} from 'react'
 import {connect} from 'react-redux'
 import userActions from '../redux/actions/userActions'
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
+
+
 const SignIn = (props)=>{
     const [loguear,setLoguear] = useState({
         userName:'', password:''
@@ -26,12 +30,26 @@ const SignIn = (props)=>{
         const respuesta = await props.loginUser(loguear)
         if(respuesta && !respuesta.success){
             setErrores([respuesta.mensaje])
-            console.log(respuesta.mensaje)
+            console.log(respuesta.errores)
         }
         else {
-            alert('bienvenido')
-            props.history.push('/')
+            const MySwal = withReactContent(Swal)
+
+            MySwal.fire({
+            title: <p className="popup">Bienvenido {loguear.userName}</p>,
+            icon:'success',
+            toast: true,
+            timer:2000,
+            timerProgressBar:true,
+            showConfirmButton:false,
+            width:'30vw',                        
+            })
+            setTimeout(() => {
+                props.history.push('/')    
+            }, 2000);
+            
         }
+
     }
     return(
         <div className="SignUp">
@@ -41,7 +59,7 @@ const SignIn = (props)=>{
                 <input type="password" autoComplete="nope" name="password" placeholder="Password" onChange={leerInput}/>
             </div>
             <button onClick={validarUsuario}>Validar</button>
-            <div>
+            <div className="error">
                 {errores.map(error => <p>{error}</p>)}
             </div>
         </div>

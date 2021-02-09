@@ -8,9 +8,10 @@ import citiesActions from '../redux/actions/citiesActions'
 
 const City = (props) =>{
     const [city, setCity] = useState({})
+
+    const id=(props.match.params.id)
     useEffect(()=> {
         window.scrollTo(0, 0)
-        const id=(props.match.params.id)
         const city = props.cities.filter(city => city._id ===id)
         setCity(city[0])
         props.listItineraries(id)
@@ -29,7 +30,7 @@ const City = (props) =>{
             <div className="itineraries">
                 {props.itineraries.length !==0 ?
                 props.itineraries.map(itinerary =>{
-                    return <Itinerary key={itinerary._id} itinerary={itinerary}/>
+                    return <Itinerary key={itinerary._id} itinerary={itinerary} id={id} />
                 }):
                 <div className="noFound">
                     <h4>We don't have itineraries yet!</h4>

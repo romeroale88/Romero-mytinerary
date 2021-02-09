@@ -42,7 +42,8 @@ const itineraryController = {
         Itinerary.findOneAndUpdate({_id:id}, {idCity,itineraryTitle,userPic,userName,likes,hours,price,hastags,activities,comments},{new: true})
         .then(itineraryModif => res.json({success:true, respuesta: itineraryModif}))
         .catch(error => res.json({success: true, error: error}))
-    }
+    },
+
 }
 
 

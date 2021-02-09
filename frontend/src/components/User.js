@@ -13,6 +13,8 @@ const User = (props) => {
     <>
       {props.loggedUser ? <div className="userProfile" style={{backgroundImage:`url(${props.loggedUser.urlPic})`}}></div>
       :
+      localStorage.getItem('token') ? props.logFromLs(localStorage.getItem('userName'),localStorage.getItem('urlPic'),localStorage.getItem('token'))
+      :
       <div className="userProfile" style={{
         backgroundImage:'url("./assets/user.png")'
     }}></div>
@@ -24,7 +26,7 @@ const User = (props) => {
           {props.loggedUser ? 
           <>
           <p onClick={()=> props.logoutUser()}>logout</p>
-          <p>{`Welcome, ${props.loggedUser.nombre}`}</p>
+          <p>{`Welcome, ${props.loggedUser.userName}`}</p>
           </>
           :<>
           <NavLink to='/signin'><p>Sign In</p></NavLink>
@@ -43,7 +45,8 @@ const mapStateToProps = state =>{
   }
 }
 const mapDispatchToProps = {
-  logoutUser: userActions.logoutUser
+  logoutUser: userActions.logoutUser,
+  logFromLs: userActions.logFromLs
 }
 
 export default connect(mapStateToProps,mapDispatchToProps)(User) 

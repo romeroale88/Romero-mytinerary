@@ -8,3 +8,4 @@ mongoose.connect(process.env.MONGODB,{
 })
 .then(() => console.log('conexion exitosa'))
 .catch(error => console.log(error))
+
