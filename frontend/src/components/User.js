@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 import userActions from '../redux/actions/userActions'
 
 const User = (props) => {
-  console.log(props.loggedUser)
+
   const [visible, setVisible] = useState(false)
 
   return (

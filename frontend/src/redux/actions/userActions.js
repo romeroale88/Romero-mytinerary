@@ -17,7 +17,7 @@ const userActions = {
                 return respuesta.data
             }
             dispatch({type: 'LOG_USER',payload: respuesta.data})
-            console.log(respuesta.data)
+  
         }
     },
     logoutUser: () =>{
@@ -37,7 +37,7 @@ const userActions = {
                 return respuesta.data
             }
             dispatch({type: 'LOG_USER', payload: respuesta.data})
-            console.log(respuesta.data)
+
         }
     }
 }

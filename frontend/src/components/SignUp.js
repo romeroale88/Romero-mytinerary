@@ -6,13 +6,13 @@ import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 
 const SignUp = (props)=>{
-    console.log(props)
+
     const [nuevoUser,setNuevoUser] = useState({
         nombre:'',apellido:'',userName:'',email:'',urlPic:'',pais:''
     })
     const [error, setError] = useState({})
     const [errores, setErrores] = useState([])
-    console.log(nuevoUser)
+
     const leerInput = e =>{
         const valor = e.target.value
         const campo = e.target.name
@@ -25,7 +25,6 @@ const SignUp = (props)=>{
         e.preventDefault()
         const respuesta = await props.newUser(nuevoUser)
         if(respuesta && !respuesta.success){
-            console.log(respuesta)
             const arrayErrores = respuesta.errores.details                 
             const erroresObj ={
                 nombre:null,apellido:null,userName:null,email:null,password:null,urlPic:null,pais:null
@@ -36,7 +35,7 @@ const SignUp = (props)=>{
             })
             setError(erroresObj)
             setErrores(respuesta.errores)
-            console.log(errores)
+
         }
         else {
             const MySwal = withReactContent(Swal)
@@ -58,7 +57,7 @@ const SignUp = (props)=>{
         props.countries()
     },[])
     const responseGoogle = async (response) => {
-        console.log(response)
+
         if(response.error){
             const MySwal = withReactContent(Swal)
             MySwal.fire({
@@ -80,7 +79,7 @@ const SignUp = (props)=>{
                 pais:'indefinido'
             })
             if(respuesta && !respuesta.success){
-                console.log(respuesta)
+                
                 const arrayErrores = respuesta.errores.details                 
                 const erroresObj ={
                     nombre:null,apellido:null,userName:null,email:null,password:null,urlPic:null,pais:null
@@ -91,8 +90,7 @@ const SignUp = (props)=>{
                 })
                 setError(erroresObj)
                 setErrores(respuesta.errores)
-                console.log(error)
-                console.log(errores)
+
             }
             else {
                 const MySwal = withReactContent(Swal)
