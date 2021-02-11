@@ -38,11 +38,17 @@ router.route('/user/ls')
 .post(passport.authenticate('jwt', {session: false}), userController.logFromLS)
 
 router.route('/comments')
-.post(commentController.addComment)
+.post(passport.authenticate('jwt', {session: false}),commentController.addComment)
 .put(commentController.modifComment)
 
 
 router.route('/comments/delete')
-.put(commentController.deleteComment)
+.put(passport.authenticate('jwt', {session: false}),commentController.deleteComment)
+
+router.route('/like')
+.post(passport.authenticate('jwt', {session: false}),itineraryController.like)
+
+router.route('/dislike')
+.post(passport.authenticate('jwt', {session: false}),itineraryController.dislike)
 
 module.exports = router

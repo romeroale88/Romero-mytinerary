@@ -8,15 +8,14 @@ module.exports = passport.use(new jwtStrategy({
     secretOrKey: process.env.SECRET_KEY
 },(payload,done)=>{
     User.findById(payload._doc._id)
-    .then(user =>{
-        if(!user){
-            return done(null,false)
-        }else {
-            return done(null,user)
+    .then(user => {
+        if (!user) {
+            return done(null, false)
+        } else {
+            return done(null, user)
         }
     })
-    .catch( error => {
+    .catch(error => {
         return done(error, false)
-    })
+    } )
 }))
-

@@ -59,12 +59,38 @@ nav .active{
 .containerUser {
     margin:1vw 0 0 5vw;
     display: flex;
-    width: 150px;
+    width: 25vw;
     height: 113px;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
+.login{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.login a{
+    color: white;
+    border-radius: 5px;
+    padding: 5px 15px;
+    border: 2px solid transparent;
+}
+
+.login a:hover{
+    border: 2px solid white;
+    color: white; 
+}
+.logout{
+    padding: 5px 10px;
+    background-color: #fff;
+    border-radius:5px ;
+    color: #1c4573;
+    font-weight: 600;
+    border: 2px solid transparent;
+}
+
 .userProfile{
     width: 50px;
     height: 50px;
@@ -80,18 +106,37 @@ nav .active{
     text-align: center;
 }
 .formulario{
-    margin: 3vh 0;
+    margin-top: 3vh;
     display: flex;
     flex-direction: column;
 }
+.formulario input{
+    margin-bottom: 2vh;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    padding: 10px 15px;
+    box-shadow: 5px 5px 9px rgba(0, 0, 0, 0.3);  
+}
+select{
+    margin-bottom: 2vh;
+    border: none;
+    outline: none;
+    padding: 10px 15px;
+    border-radius: 10px;
+    box-shadow: 5px 5px 9px rgba(0, 0, 0, 0.3);
+}
 /* ################################## Sign Up ################################################################# */
 .SignUp{
+    padding-top: 5vh;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 .error{
     font-size: 13px;
+    border-radius: 10px;
+    padding: 3px 10px;
     background-color: rgb(156, 36, 36);
     color: white;
 }
@@ -416,7 +461,7 @@ h6{
 }
 .comments{
     display: flex;
-    padding-bottom: 5vh;
+    padding-bottom: 2vh;
 }
 .comment{
     display: flex;
@@ -431,6 +476,7 @@ h6{
     color: #1c4573;
 }
 .comment p{
+    max-width: 50vw;
     background-color: #fff;
     box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.336);
     padding: 1vw;
@@ -449,7 +495,6 @@ h6{
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-right: 2vw;
     width: 15vw;
 }
 .comentario{
@@ -462,6 +507,13 @@ h6{
     box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.336)
 }
 
+/* ################################## Like ################################################################# */
+.iconoLike{
+    width:24px;
+    margin-right:5px;
+    height:24px;
+    background-size:cover
+}
 
 /* ################################## Responsive ################################################################# */
 

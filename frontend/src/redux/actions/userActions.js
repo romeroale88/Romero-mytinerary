@@ -12,11 +12,12 @@ const userActions = {
     newUser: (newUser)=>{
         return async(dispatch, getState)=>{
             const respuesta = await axios.post('http://localhost:4000/api/user/signup',newUser)
+            
             if(!respuesta.data.success){
                 return respuesta.data
             }
             dispatch({type: 'LOG_USER',payload: respuesta.data})
-            console.log(respuesta)
+            console.log(respuesta.data)
         }
     },
     logoutUser: () =>{
@@ -24,9 +25,9 @@ const userActions = {
             dispatch({type: 'LOG_OUT_USER'})
         }
     },
-    logFromLs:(nombre, url,token) =>{
+    logFromLs:(nombre, url,token,idUser) =>{
         return (dispatch, getState) =>{
-            dispatch({type: 'LOG_USER', payload: {response:{userName: nombre, urlPic:url, token}}})
+            dispatch({type: 'LOG_USER', payload: {response:{userName: nombre, urlPic:url, token,idUser:idUser}}})
         }
     },
     loginUser: (user)=>{
@@ -36,6 +37,7 @@ const userActions = {
                 return respuesta.data
             }
             dispatch({type: 'LOG_USER', payload: respuesta.data})
+            console.log(respuesta.data)
         }
     }
 }

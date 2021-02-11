@@ -6,14 +6,14 @@ import { connect } from 'react-redux'
 import userActions from '../redux/actions/userActions'
 
 const User = (props) => {
-  console.log(props)
+  console.log(props.loggedUser)
   const [visible, setVisible] = useState(false)
 
   return (
     <>
       {props.loggedUser ? <div className="userProfile" style={{backgroundImage:`url(${props.loggedUser.urlPic})`}}></div>
       :
-      localStorage.getItem('token') ? props.logFromLs(localStorage.getItem('userName'),localStorage.getItem('urlPic'),localStorage.getItem('token'))
+      localStorage.getItem('token') ? props.logFromLs(localStorage.getItem('userName'),localStorage.getItem('urlPic'),localStorage.getItem('idUser'))
       :
       <div className="userProfile" style={{
         backgroundImage:'url("./assets/user.png")'
@@ -22,10 +22,10 @@ const User = (props) => {
       
       <div className="visibleSing">
         {visible && 
-        <div style={{display:'flex', justifyContent:'space-between'}}>
+        <div className="login">
           {props.loggedUser ? 
           <>
-          <p onClick={()=> props.logoutUser()}>logout</p>
+          <p className="logout" onClick={()=> props.logoutUser()}>Logout</p>
           <p>{`Welcome, ${props.loggedUser.userName}`}</p>
           </>
           :<>

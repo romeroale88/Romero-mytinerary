@@ -23,11 +23,6 @@ const SignUp = (props)=>{
     }
     const validarUsuario = async e =>{
         e.preventDefault()
-        // if(nuevoUser.nombre==='' || nuevoUser.apellido==='' || nuevoUser.userName==='' || nuevoUser.email==='' || nuevoUser.urlPic==='' || nuevoUser.pais===''){
-        //     alert('error')
-        //     return false
-        // }
-        // setErrores([])
         const respuesta = await props.newUser(nuevoUser)
         if(respuesta && !respuesta.success){
             console.log(respuesta)
@@ -44,10 +39,20 @@ const SignUp = (props)=>{
             console.log(errores)
         }
         else {
-            alert('grabado')
-            props.history.push('/')
-        }
-        
+            const MySwal = withReactContent(Swal)
+            MySwal.fire({
+                title: <p className="popup">Create exit. Welcome! </p>,
+                icon:'success',
+                toast: true,
+                timer:2000,
+                timerProgressBar:true,
+                showConfirmButton:false,
+                width:'30vw',                        
+                })
+            setTimeout(() => {
+                props.history.push('/')    
+            }, 2000);       
+        } 
     }
     useEffect(()=>{
         props.countries()
@@ -56,7 +61,6 @@ const SignUp = (props)=>{
         console.log(response)
         if(response.error){
             const MySwal = withReactContent(Swal)
-
             MySwal.fire({
             title: <p className="popup">Error </p>,
             icon:'error',
@@ -68,10 +72,12 @@ const SignUp = (props)=>{
             })
         }else {
             const respuesta = await props.newUser({
-                userName: response.profileObj.email,
+                userName: response.profileObj.givenName,
                 password: response.profileObj.googleId,
                 nombre: response.profileObj.givenName,
-                apellido: response.profileObj.familyName
+                apellido: response.profileObj.familyName,
+                urlPic:response.profileObj.imageUrl,
+                pais:'indefinido'
             })
             if(respuesta && !respuesta.success){
                 console.log(respuesta)
@@ -85,40 +91,51 @@ const SignUp = (props)=>{
                 })
                 setError(erroresObj)
                 setErrores(respuesta.errores)
+                console.log(error)
                 console.log(errores)
             }
             else {
-                alert('grabado')
-                props.history.push('/')
+                const MySwal = withReactContent(Swal)
+                MySwal.fire({
+                    title: <p className="popup">Create exit. Welcome! </p>,
+                    icon:'success',
+                    toast: true,
+                    timer:2000,
+                    timerProgressBar:true,
+                    showConfirmButton:false,
+                    width:'30vw',                        
+                    })
+                    setTimeout(() => {
+                        props.history.push('/')    
+                    }, 2000);    
             }
         }
-        
       }
-    
     return(
         <div className="SignUp">
             <h4>Create Account</h4>
             <div className="formulario">
-                <input type="text" autoComplete="nope"  name="nombre" placeholder="First Name" onChange={leerInput}/>
                 {error.nombre && <p className="error">{error.nombre}</p>}
-                <input type="text" autoComplete="nope"  name="apellido" placeholder="Last Name" onChange={leerInput}/>
+                <input type="text" autoComplete="nope"  name="nombre" placeholder="First Name" onChange={leerInput}/>                
                 {error.apellido && <p className="error">{error.apellido}</p>}
-                <input type="text"autoComplete="nope"  name="userName" placeholder="Username" onChange={leerInput}/>
+                <input type="text" autoComplete="nope"  name="apellido" placeholder="Last Name" onChange={leerInput}/>
                 {error.userName && <p className="error">{error.userName}</p>}
-                <input type="text" autoComplete="nope"  name="email" placeholder="Email" onChange={leerInput}/>
+                <input type="text"autoComplete="nope"  name="userName" placeholder="Username" onChange={leerInput}/>
                 {error.email && <p className="error">{error.email}</p>}
-                <input type="text" autoComplete="nope"  name="urlPic" placeholder="Url Pic" onChange={leerInput}/>
+                <input type="text" autoComplete="nope"  name="email" placeholder="Email" onChange={leerInput}/>
                 {error.urlPic && <p className="error">{error.urlPic}</p>}
+                <input type="text" autoComplete="nope"  name="urlPic" placeholder="Url Pic" onChange={leerInput}/>
                 <select name="pais" id="" onChange={leerInput}>
                     <option value="" disabled selected>--</option>                   
                     {props.listCountries && props.listCountries.map(country =>{
                         return <option value={country.name}>{country.name}</option>
                     })}
                 </select>
-                <input type="text" autoComplete="nope" name="password" placeholder="Password" onChange={leerInput}/>
                 {error.password && <p className="error">{error.password}</p>}
+                <input type="text" autoComplete="nope" name="password" placeholder="Password" onChange={leerInput}/>
+                
             </div>
-            <button onClick={validarUsuario}>Create</button>
+            <button className="buttonCall" onClick={validarUsuario}>Create Account</button>
             <GoogleLogin
                 clientId="516285407423-qqvg7pnoibihom6j5rurfub6ma5b5l70.apps.googleusercontent.com"
                 buttonText="Create Account with Google"

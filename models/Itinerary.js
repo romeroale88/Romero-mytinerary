@@ -5,7 +5,7 @@ const itinerarySchema = new mongoose.Schema({
     itineraryTitle: {type: String, required: true},
     userPic: {type: String, required: true},
     userName: {type: String, required: true},
-    likes: {type: Number, default: 0},
+    likes: [{type: mongoose.Schema.ObjectId, ref:'user'}],
     hours: {type: Number, required: true},
     price: {type: Number, required: true},
     hastags:[{type: String, required: true}],
@@ -22,7 +22,8 @@ const itinerarySchema = new mongoose.Schema({
             comment:{type: String}
         }
     ],
-    idCity:{type: mongoose.Schema.ObjectId, ref: 'city'} 
+    idCity:{type: mongoose.Schema.ObjectId, ref: 'city'},
+    
 })
 
 

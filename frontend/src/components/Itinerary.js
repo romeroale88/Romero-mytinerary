@@ -1,7 +1,9 @@
 import { connect } from "react-redux"
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import Comment from './Comment'
+import {faPaperPlane} from '@fortawesome/free-solid-svg-icons'
 import itinerariesActions from '../redux/actions/itinerariesActions'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
 
 
@@ -9,21 +11,31 @@ const Itinerary = (props) =>{
     const [visible, setVisible] = useState(false)
     const [like, setLike] = useState(false)
     const [value, setValue] = useState('')
-
+    
     const comment = e =>{
         setValue(e.target.value)
     }
+    
     const enviar = async (e) =>{
-        // e.preventDefault()   
-        await props.enviarComment(value, props.itinerary._id,props.loggedUser.userName)
+        await props.enviarComment(value, props.itinerary._id,props.loggedUser.token)
         props.listItineraries(props.id)
-        // document.getElementById('comentario').value=''
         setValue('')
     }
     const keyPress = (e) =>{
          if(e.key=== 'Enter'){
              enviar();
         }
+    }
+
+    const likesss = props.itinerary.likes
+    const encontraado = likesss.includes(props.loggedUser.idUser)
+    const likes = async(e) =>{
+        await props.like(props.itinerary._id,props.loggedUser.token)
+        props.listItineraries(props.id)
+    }
+    const dislike= async (e) =>{
+        await props.dislike(props.itinerary._id,props.loggedUser.token)
+        props.listItineraries(props.id)
     }
 
     return (
@@ -37,18 +49,13 @@ const Itinerary = (props) =>{
                 <div className="infoItinerary">
                 <h4>{props.itinerary.itineraryTitle}</h4>
                     <div className="detalleItineray">
-                        {props.loggedUser ?
-                        <h1 onClick={()=>setLike(!like)}>{like ? <div style={{backgroundImage:'url("../assets/corazon1.png")', width:'24px',marginRight:'5px', height:'24px', backgroundSize:'cover'}}></div> :
-                        <div style={{backgroundImage:'url("../assets/corazon1vacio.png")', width:'24px',height:'24px', marginRight:'5px', backgroundSize:'cover'}}></div>}</h1>
-                        :
-                        <div></div>
-                        }
-                        {/* {itinerary.likes !==0 ? 
-                        <div className="likes">
-                        <div style={{backgroundImage:'url("../assets/corazon1.png")', width:'24px',marginRight:'5px', height:'24px', backgroundSize:'cover'}}></div><h6>{itinerary.likes}</h6>
-                        </div>
-                        :
-                        <div style={{backgroundImage:'url("../assets/corazon1vacio.png")', width:'24px',height:'24px', backgroundSize:'cover'}}></div>} */}
+                        {props.loggedUser &&(
+                            encontraado ?
+                            <div onClick={dislike} className="iconoLike" style={{backgroundImage:'url("../assets/corazon1.png")'}}></div>
+                            :
+                            <div onClick={likes} className="iconoLike" style={{backgroundImage:'url("../assets/corazon1vacio.png")'}}></div>
+                        )}
+                        <h1>{likesss.length}</h1>
                         <h6>{props.itinerary.hours} Hours</h6>
                         <div style={{display:'flex', alignItems:'center',width:'50%'}}>Price:{[...Array(props.itinerary.price)].map((m,i)=>{
                             return (<div key={i} style={{backgroundImage:'url("../assets/billete.png")',margin:'0 2px',width:'2vw',height:'2vh',backgroundSize:'cover',backgroundPosition:'center'}}></div>)
@@ -90,7 +97,7 @@ const Itinerary = (props) =>{
                         }))                    
                             :
                         <h4>No comments</h4>}
-                        {props.loggedUser ?<><input className="comentario" autoComplete="off" id="comentario" value={value}  type="text" placeholder="Your comment!"  onChange={comment} onKeyPress={keyPress}/><button onClick={enviar}>enviar</button></>
+                        {props.loggedUser ?<div style={{display:'flex', alignItems:'center'}}><input className="comentario" autoComplete="off" id="comentario" value={value}  type="text" placeholder="Your comment!"  onChange={comment} onKeyPress={keyPress}/><p onClick={enviar}><FontAwesomeIcon icon={faPaperPlane} style={{color:'#1c4573'}} /></p></div>
                         :
                         <input className="comentario" disabled type="text" placeholder="You must be logged to comment!"/>}
                     </div>
@@ -111,8 +118,8 @@ const mapStateToProps =state => {
 const mapDispatchToProps ={
     enviarComment: itinerariesActions.addComment,
     listItineraries:itinerariesActions.getItinerary,
-    borrarComment: itinerariesActions.deleteComment
+    borrarComment: itinerariesActions.deleteComment,
+    like:itinerariesActions.like,
+    dislike: itinerariesActions.dislike
 }
-
-
 export default connect(mapStateToProps,mapDispatchToProps)(Itinerary)

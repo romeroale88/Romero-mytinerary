@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken')
 const userController = {
     signUp: async (req, res) =>{
         var errores=[]
-        const {nombre,apellido,email,userName,password,urlPic,pais} = req.body
+        const {nombre,apellido,email,userName,password,urlPic,pais,itineraryLike} = req.body
         const userExists = await User.findOne({userName: userName})
         if(userExists){
             errores.push('el usuario es esta siendo usado.elija otro')
@@ -14,33 +14,35 @@ const userController = {
             const passwordHash = bcryptjs.hashSync(password,10)
             
             var newUser = new User ({
-                userName,password:passwordHash,nombre,apellido,email,pais,urlPic
+                userName,password:passwordHash,nombre,apellido,email,pais,urlPic,itineraryLike
             })
             var newUserSaved = await newUser.save()
             
             var token = jwt.sign({...newUserSaved}, process.env.SECRET_KEY,{})
-            console.log(token)
+            
         }
         return res.json({success:errores.length === 0 ? true: false,
                         errores: errores,
-                        response: token})
+                        response: {token, userName:newUserSaved.nombre,urlPic: newUserSaved.urlPic,idUser:newUserSaved._id }})
+                        
     },
+    
     singIn:async (req, res) =>{
         const {userName, password} = req.body
         const userExists = await User.findOne({userName: userName})
         if (!userExists){
-            return res.json({success: false, mensaje: 'el usuario y/o contraseña incorrectos'})
+            return res.json({success: false, mensaje: 'The wrong username and / or password'})
         }
         const passwordComp = bcryptjs.compareSync(password, userExists.password)
         if(!passwordComp){
-            return res.json({success: false, mensaje:'el usuario y/o contraseña incorrectos'})
+            return res.json({success: false, mensaje:'The wrong username and / or password'})
         }
-        var token = jwt.sign({...userExists},process.env.SECRET_KEY,{})
-
-        return res.json({success: true, response: {token,userName:userExists.userName,urlPic:userExists.urlPic}})
+        var token = jwt.sign({...userExists},process.env.SECRET_KEY,{})        
+        return res.json({success: true, response: {token,userName:userExists.nombre,urlPic:userExists.urlPic,idUser:userExists._id}})
     },
-    logFromLS: (req, res) =>{
-        
+    
+    logFromLS: async(req, res) =>{
+        res.json({success: true, response: {token: req.body.token,userName:req.user.nombre,urlPic:req.user.urlPic}})
     }
 
 }

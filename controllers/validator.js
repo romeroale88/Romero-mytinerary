@@ -8,14 +8,13 @@ const validator = {
             email:Joi.string().trim().email({ tlds: {allow: false} }).messages({'string.email':'email invalid','string.empty': 'email cannot be empty'}),
             urlPic:Joi.string().trim().uri().required().messages({'string.uri': 'url valid','string.empty':'UrlPic cannot be empty'}),
             pais:Joi.string().required(),
-            password:Joi.string().trim().required().pattern(/(?=.*\d)/).min(6).messages({'string.pattern.base': 'password min 5','any.required': 'Password cannot be empty'}),
+            password:Joi.string().trim().required().pattern(/(?=.*\d)/).min(6).messages({'string.pattern.base': 'password Min 5 character .1 Number','any.required': 'Password cannot be empty','string.min': 'password Min 5 character .1 Number'}),
+            
             
         })
-
+        
         const validation = schema.validate(req.body,{abortEarly:false})
 
-        // console.log(validation.error.details)
-        
         if(!validation.error){
             next()
         }else {

@@ -1,4 +1,5 @@
 const Itinerary = require('../models/Itinerary')
+const User = require('../models/User')
 
 
 const itineraryController = {
@@ -41,10 +42,37 @@ const itineraryController = {
         const {idCity,itineraryTitle,userPic,userName,likes,hours,price,hastags,activities,comments} = req.body
         Itinerary.findOneAndUpdate({_id:id}, {idCity,itineraryTitle,userPic,userName,likes,hours,price,hastags,activities,comments},{new: true})
         .then(itineraryModif => res.json({success:true, respuesta: itineraryModif}))
-        .catch(error => res.json({success: true, error: error}))
+        .catch(error => res.json({success: false, error: error}))
     },
+    like: (req, res)=>{
+        const idItinerary = req.body.idItinerary
+        const user = req.user._id
 
+        Itinerary.findOneAndUpdate({_id: idItinerary},{$addToSet:{likes:user}},{new:true})
+        .then(user => {
+            return res.json({success: true, respuesta: user.likes})
+  
+        })
+        
+        .catch(error => {
+            return res.json({success: false, error: error})
+        })
+        
+    },
+    dislike:(req, res)=>{
+        const idItinerary = req.body.idItinerary
+        const user = req.user._id
+        
+        Itinerary.findOneAndUpdate({_id:idItinerary},{$pull:{likes:user}},{new: true})
+        .then(user =>{
+            return res.json({success:true, respuesta: user})
+        })
+        .catch(err =>{
+            return res.json({success: false, error: err})
+        })
+    }
 }
+
 
 
 module.exports = itineraryController
