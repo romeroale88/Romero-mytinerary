@@ -33,7 +33,7 @@ const userController = {
     
     singIn:async (req, res) =>{
         // const {userName, password} = req.body
-        const {email, password}
+        const {email, password} = req.body
         // const userExists = await User.findOne({userName: userName})
         const userExists = await User.findOne({email: email})
         if (!userExists){
