@@ -45,7 +45,7 @@ const userController = {
         }
         var token = jwt.sign({...userExists},process.env.SECRET_KEY,{})        
         // return res.json({success: true, response: {token,userName:userExists.nombre,urlPic:userExists.urlPic,idUser:userExists._id}})
-        return res.json({success: true, response: {token,email:userExists.email,idUser:userExists._id}})
+        return res.json({success: true, response: {token,email:userExists.email,idUser:userExists._id,nombre:userExists.nombre}})
     },
     
     logFromLS: async(req, res) =>{
