@@ -29,8 +29,8 @@ router.route('/itinerary/:id')
 
 
 router.route('/user/signup')
-// .post(validator.validar,userController.signUp)
-.post(userController.signUp)
+.post(validator.validar,userController.signUp)
+
 
 router.route('/user/signin')
 .post(userController.singIn)
