@@ -32,8 +32,10 @@ const userController = {
     },
     
     singIn:async (req, res) =>{
-        const {userName, password} = req.body
-        const userExists = await User.findOne({userName: userName})
+        // const {userName, password} = req.body
+        const {email, password}
+        // const userExists = await User.findOne({userName: userName})
+        const userExists = await User.findOne({email: email})
         if (!userExists){
             return res.json({success: false, mensaje: 'The wrong username and / or password'})
         }
@@ -42,7 +44,8 @@ const userController = {
             return res.json({success: false, mensaje:'The wrong username and / or password'})
         }
         var token = jwt.sign({...userExists},process.env.SECRET_KEY,{})        
-        return res.json({success: true, response: {token,userName:userExists.nombre,urlPic:userExists.urlPic,idUser:userExists._id}})
+        // return res.json({success: true, response: {token,userName:userExists.nombre,urlPic:userExists.urlPic,idUser:userExists._id}})
+        return res.json({success: true, response: {token,email:userExists.email,idUser:userExists._id}})
     },
     
     logFromLS: async(req, res) =>{
