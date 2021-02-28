@@ -5,7 +5,8 @@ const jwt = require('jsonwebtoken')
 const userController = {
     signUp: async (req, res) =>{
         var errores=[]
-        const {nombre,apellido,email,userName,password,urlPic,pais,itineraryLike} = req.body
+        // const {nombre,apellido,email,userName,password,urlPic,pais,itineraryLike} = req.body
+        const {nombre, apellido,email,password}=req.body
         const userExists = await User.findOne({userName: userName})
         if(userExists){
             errores.push('el usuario es esta siendo usado.elija otro')
