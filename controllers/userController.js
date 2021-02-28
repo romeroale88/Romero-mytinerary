@@ -26,7 +26,8 @@ const userController = {
         }
         return res.json({success:errores.length === 0 ? true: false,
                         errores: errores,
-                        response: {token, userName:newUserSaved.nombre,urlPic: newUserSaved.urlPic,idUser:newUserSaved._id }})
+                        // response: {token, userName:newUserSaved.userName,urlPic: newUserSaved.urlPic,idUser:newUserSaved._id }})
+                        response:{token, nombre: newUserSaved.nombre,email: newUserSaved.email, idUser: newUserSaved._id}})
                         
     },
     
