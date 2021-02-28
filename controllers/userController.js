@@ -7,7 +7,8 @@ const userController = {
         var errores=[]
         // const {nombre,apellido,email,userName,password,urlPic,pais,itineraryLike} = req.body
         const {nombre, apellido,email,password}=req.body
-        const userExists = await User.findOne({userName: userName})
+        // const userExists = await User.findOne({userName: userName})
+        const userExists = await User.findOne({email: email})
         if(userExists){
             errores.push('el usuario es esta siendo usado.elija otro')
         }
@@ -15,10 +16,11 @@ const userController = {
             const passwordHash = bcryptjs.hashSync(password,10)
             
             var newUser = new User ({
-                userName,password:passwordHash,nombre,apellido,email,pais,urlPic,itineraryLike
+                // userName,password:passwordHash,nombre,apellido,email,pais,urlPic,itineraryLike
+                nombre,apellido,email,password:passwordHash
             })
             var newUserSaved = await newUser.save()
-            
+            console.log(newUser)
             var token = jwt.sign({...newUserSaved}, process.env.SECRET_KEY,{})
             
         }
